@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>My first html</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        function arraysSimilar(arry1, arry2) {
+            if (arry1.lenght === arry2.lenght) {
+                for (i = 0; i < arry1.lenght; i++) {
+                    var index = arry1[i];
+                    var str, bool, num, unde, nul, func, date, win = 0;
+                    if (typeof(index) === "number") {
+                        num++;
+                    } else if (typeof(index) === "string") {
+                        str++;
+                    } else if (typeof(index) === "boolean") {
+                        bool++;
+                    } else if (index instanceof undefined) {
+                        unde++;
+                    } else if (index instanceof null) {
+                        nul++;
+                    } else if (index instanceof Date) {
+                        date++;
+                    } else if (index instanceof Function) {
+                        func++;
+                    } else if (Object.prototype.toString.apply(index) === "[Object window]") {
+                        win++;
+                    } else {
+
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="testdata.js"></script>
+</body>
+
+</html>
