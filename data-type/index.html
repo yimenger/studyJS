@@ -9,29 +9,79 @@
 <body>
     <script type="text/javascript">
         function arraysSimilar(arry1, arry2) {
-            if (arry1.lenght === arry2.lenght) {
-                for (i = 0; i < arry1.lenght; i++) {
+            if (!(arry1 instanceof Array)) {
+                return false;
+            }
+            if (!(arry2 instanceof Array)) {
+                return false;
+            }
+            if (arry1.length === arry2.length) {
+                var str1 = 0,
+                    bool1 = 0,
+                    num1 = 0,
+                    unde1 = 0,
+                    nul1 = 0,
+                    func1 = 0,
+                    date1 = 0,
+                    win1 = 0;
+                for (i = 0; i < arry1.length; i++) {
                     var index = arry1[i];
-                    var str, bool, num, unde, nul, func, date, win = 0;
                     if (typeof(index) === "number") {
-                        num++;
+                        num1++;
                     } else if (typeof(index) === "string") {
-                        str++;
+                        str1++;
                     } else if (typeof(index) === "boolean") {
-                        bool++;
-                    } else if (index instanceof undefined) {
-                        unde++;
-                    } else if (index instanceof null) {
-                        nul++;
+                        bool1++;
+                    } else if (typeof(index) === undefined) {
+                        unde1++;
+                    } else if (Object.prototype.toString.apply(index) === "[object Null]") {
+                        nul1++;
                     } else if (index instanceof Date) {
-                        date++;
+                        date1++;
                     } else if (index instanceof Function) {
-                        func++;
-                    } else if (Object.prototype.toString.apply(index) === "[Object window]") {
-                        win++;
+                        func1++;
+                    } else if (index instanceof Window) {
+                        win1++;
                     } else {
 
                     }
+                }
+                console.log(str1, bool1, num1, unde1, nul1, func1, date1, win1);
+                var str2 = 0,
+                    bool2 = 0,
+                    num2 = 0,
+                    unde2 = 0,
+                    nul2 = 0,
+                    func2 = 0,
+                    date2 = 0,
+                    win2 = 0;
+                for (i = 0; i < arry2.length; i++) {
+                    var index = arry2[i];
+                    if (typeof(index) === "number") {
+                        num2++;
+                    } else if (typeof(index) === "string") {
+                        str2++;
+                    } else if (typeof(index) === "boolean") {
+                        bool2++;
+                    } else if (typeof(index) === undefined) {
+                        unde2++;
+                    } else if (Object.prototype.toString.apply(index) === "[object Null]") {
+                        nul2++;
+                    } else if (index instanceof Date) {
+                        date2++;
+                    } else if (index instanceof Function) {
+                        func2++;
+                    } else if (Object.prototype.toString.apply(index) === "[object Window]") {
+                        win2++;
+                    } else {
+
+                    }
+                }
+                if (str1 === str2 & bool1 === bool2 & num1 === num2 & unde1 === unde2 &
+                    nul1 === nul2 & func1 === func2 & date1 === date2 & win1 === win2) {
+                    return true;
+                } else {
+                    return false;
                 }
             }
         }
